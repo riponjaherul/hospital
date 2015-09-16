@@ -5,8 +5,8 @@ if(isset($_SESSION['sess_user_admin_login_id']) != NULL){
 }
 require_once '../classes/login.php';
 $obj_login = new Login();
-    if(isset($_POST['btn_reg_manager'])){
-        $obj_login->check_reg_manager_login($_POST);
+    if(isset($_POST['btn_nurse'])){
+        $obj_login->check_nurse_login($_POST);
     }
 ?>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@ $obj_login = new Login();
           <a href="#"><b>Admin</b>LTE</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign as <mark>Registration Manager</mark></p>
+        <p class="login-box-msg">Sign as <mark>Nurse</mark></p>
         <form action="" method="post">
             <span>
                 <?php
@@ -49,11 +49,11 @@ $obj_login = new Login();
                 ?>
             </span>
           <div class="form-group has-feedback">
-              <input type="email" name="reg_manager_email_address" class="form-control" placeholder="Email" />
+              <input type="email" name="nurse_email_address" class="form-control" placeholder="Email" />
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-              <input type="password" name="reg_manager_password" class="form-control" placeholder="Password" />
+              <input type="password" name="nurse_password" class="form-control" placeholder="Password" />
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
@@ -65,14 +65,16 @@ $obj_login = new Login();
               </div>
             </div><!-- /.col -->
             <div class="col-xs-4">
-                <button type="submit" name="btn_reg_manager" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                <button type="submit" name="btn_nurse" class="btn btn-primary btn-block btn-flat">Sign In</button>
             </div><!-- /.col -->
           </div>
         </form>
 
         <a href="../index.php" style=" color: #00880a;">Sign in as Admin</a><br>
+        <a href="doctor_login.php" style=" color: #00880a;">Sign in as Doctor</a><br>
+        <a href="nurse_login.php" style=" color: #00880a;">Sign in as Nurse</a><br>
         <a href="patient_login.php" style=" color: #00880a;">Sign in as Patient</a><br>
-        <a href="report_login.php" style=" color: #00880a;">Sign in as Report Manager</a><br>
+        <a href="appointment_login.php" style=" color: #00880a;">Sign in as Appointment Manager</a><br>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

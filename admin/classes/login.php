@@ -33,7 +33,7 @@ class Login {
         $email_address = mysql_real_escape_string($data['doctor_email_address']);
         $password = md5($data['doctor_password']);
         
-        $sql = "SELECT doctor_title,doctor_first_name,doctor_last_name,doctor_email_address,doctor_password,doctor_stauts
+        $sql = "SELECT doctor_id,doctor_title,doctor_first_name,doctor_last_name,doctor_email_address,doctor_password,doctor_image,doctor_stauts
                 FROM tbl_doctor
                 WHERE doctor_email_address = '$email_address' AND doctor_password = '$password'";
         $query_result = mysql_query($sql);
@@ -54,7 +54,7 @@ class Login {
         $email_address = mysql_real_escape_string($data['patient_email_address']);
         $password = md5($data['patient_password']);
         
-        $sql = "SELECT patient_name,patient_image,patient_email_address,patient_password
+        $sql = "SELECT patient_id,patient_name,patient_image,patient_email_address,patient_password
                 FROM tbl_patient
                 WHERE patient_email_address = '$email_address' AND patient_password = '$password'";
         $query_result = mysql_query($sql);
@@ -88,9 +88,9 @@ class Login {
             header("Location:../deshbord.php");
         }
     }
-    function check_reg_manager_login($data){
-        $email_address = mysql_real_escape_string($data['reg_manager_email_address']);
-        $password = md5($data['reg_manager_password']);
+    function check_appointment_manager_login($data){
+        $email_address = mysql_real_escape_string($data['app_manager_email_address']);
+        $password = md5($data['app_manager_password']);
         
         $sql = "SELECT reg_manager_name,reg_manager_image,reg_manager_email_address,reg_manager_password
                 FROM tbl_reg_manager
@@ -103,6 +103,25 @@ class Login {
         } else {
             $_SESSION['sess_user_admin_login_id'] = session_id();
             $_SESSION['user_access_for_registration_manager'] = session_id();
+            $_SESSION['result'] = $result;
+            header("Location:../deshbord.php");
+        }
+    }
+    function check_nurse_login($data){
+        echo $email_address = mysql_real_escape_string($data['nurse_email_address']);
+        echo $password = md5($data['nurse_password']);
+//        exit();
+        $sql = "SELECT nurse_id,nurse_name,nurse_image,nurse_email_address,nurse_password
+                FROM tbl_nurse
+                WHERE nurse_email_address = '$email_address' AND nurse_password = '$password'";
+        $query_result = mysql_query($sql);
+        $result = mysql_fetch_assoc($query_result);
+        
+        if ($result == NULL) {
+            $_SESSION['message'] = '<span style="color:red;">Invalid Email and Password</span>';
+        } else {
+            $_SESSION['sess_user_admin_login_id'] = session_id();
+            $_SESSION['user_access_for_nurse_manager'] = session_id();
             $_SESSION['result'] = $result;
             header("Location:../deshbord.php");
         }

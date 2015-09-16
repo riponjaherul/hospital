@@ -26,7 +26,7 @@ if (isset($_GET['department_id'])) {
 if (isset($_GET['doctor_id'])) {
     $_SESSION['doctor_id'] = intval($_GET['doctor_id']);
     ?>
-    <input type="date" name="selected_date" value="" placeholder="mm-dd-yy" onblur="get_selected_date(this.value, 'appointment_list')">
+    <input type="date" name="selected_date" value="" placeholder="MM-DD-YYYY" onblur="get_selected_date(this.value, 'appointment_list')">
     <?php
 }
 
@@ -34,7 +34,7 @@ if (isset($_GET['get_date'])) {
     $get_date = $_GET['get_date'];
     $doctor_id = $_SESSION['doctor_id'];
     ?>
-    <div class="box-body table-responsive col-lg-11 col-lg-offset-1">
+    <div class="box-body table-responsive col-lg-12">
         <table class="table table-hover table-bordered" >
             <tr>
                 <th>Serial No</th>
@@ -42,8 +42,9 @@ if (isset($_GET['get_date'])) {
                 <th>ID</th>
                 <th>Name</th>
                 <th>Phone Number</th>
-                <th>Appointment Time</th>
+                <th>Time</th>
                 <th>Confirmation</th>
+                <th>Payment</th>
                 <th>Action</th>
             </tr>
             <?php
@@ -72,19 +73,49 @@ if (isset($_GET['get_date'])) {
                     <td><b style="color: #006666"><?php echo $row1['time_slot_time']; ?></b></td>
                     <td><?php
                         if ($row1['appointment_status'] == 0) {
-                            echo '<button class="btn btn-block btn-xs" style="background-color:#FF1919; color:#fff;">Pending</button>';
+                            echo '<b style="color: #ff0000">Pending</b>&nbsp;&nbsp;'
+                            . '<a href="?option=change_appointment_status&id=' . $row1['appointment_id'] . '&rid=' . $row1['patient_reg_id'] . '" class="glyphicon glyphicon-link"></a>';
                         } else {
-                            echo '<button class="btn btn-block btn-xs" style="background-color:#006600; color:#fff;">Confirm</button>';
+                            echo '<b style="color: #006600">Confirm</b>';
                         }
-                        ?></td>
+                        ?>
+                    </td>
                     <td>
-                        <a id="status_anchor" href="?option=pending_patient&id=<?php echo $row1['appointment_id']; ?>&rid=<?php echo $row1['patient_reg_id']; ?>"><button class="btn btn-sm glyphicon glyphicon-ok-circle"></button></a>
                         <?php
+                        if ($row1['appointment_status'] == 1) {
                             if ($row1['patient_reg_id'] == '0') {
-                                echo '<a href="?page=edit_appointment&id='.$row1['appointment_id'].'&rid='.$row1['patient_reg_id'].'"><button class="btn btn-sm glyphicon glyphicon-edit" ></button></a>';
-                            }else{
-                                echo '<a href="?page=edit_appointment&id='.$row1['appointment_id'].'&rid='.$row1['patient_reg_id'].'"><button class="btn btn-sm glyphicon glyphicon-edit disabled" ></button></a>';
+                                echo '<b style="color: #ff0000">DUE</b>';
+                            } else {
+                                $patient_id_appointment = $obj_appointment->get_parient_id_for_appointment($row1['patient_reg_id']);
+                                $patient_id_bill = $obj_appointment->get_parient_id_for_bill($doctor_id, $patient_id_appointment, $get_date);
+                                if ($patient_id_bill != NULL) {
+                                    ?>
+                                    <b style="color: #006600">PAID</b>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <b style="color: #ff0000">DUE</b>&nbsp;&nbsp;&nbsp;
+                                    <a href="?page=appointment_payment&id=<?php echo $row1['patient_reg_id']; ?>&did=<?php echo $doctor_id; ?>" class="glyphicon glyphicon-link"></a>
+                                    <?php
+                                }
                             }
+                        } else {
+                            echo '<b style="color: #ff0000">Confirm First</b>';
+                        }
+                        ?>
+                    </td>
+                    <td>
+
+                        <?php
+                        if ($row1['appointment_status'] == 1) {
+                            if ($row1['patient_reg_id'] == '0') {
+                                echo '<a href="?page=edit_appointment&id=' . $row1['appointment_id'] . '&rid=' . $row1['patient_reg_id'] . '"><button class="btn btn-sm glyphicon glyphicon-edit" ></button></a>';
+                            } else {
+                                echo '<button class="btn btn-sm glyphicon glyphicon-edit disabled" ></button>';
+                            }
+                        } else {
+                            echo '<button class="btn btn-sm glyphicon glyphicon-edit disabled" ></button>';
+                        }
                         ?>
                         <a href="?option=pending_patient&id=<?php echo $row1['appointment_id']; ?>&rid=<?php echo $row1['patient_reg_id']; ?>"><button class="btn btn-sm glyphicon glyphicon-trash"></button></a>
                     </td>

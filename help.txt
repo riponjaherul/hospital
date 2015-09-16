@@ -1,6 +1,22 @@
 *** Use only chrome browser ***
 
-Login as Registration Manager
+Admin Login
+--------------------------
+ID : ripon@gmail.com
+Pass : 123456
 
+
+Doctor Login
+-----------------------
+Id : ali@gmail.com
+Pass : 123456
+
+Patient Login
+-------------------
+Id: patient1@gmail.com
+Pass : 123456
+
+Login as Registration Manager
+----------------------------
 ID : registration@gmail.com
 Pass : 123456

@@ -72,8 +72,9 @@ $obj_login = new Login();
 
         <a href="../index.php" style=" color: #00880a;">Sign in as Admin</a><br>
         <a href="doctor_login.php" style=" color: #00880a;">Sign in as Doctor</a><br>
+        <a href="nurse_login.php" style=" color: #00880a;">Sign in as Nurse</a><br>
         <a href="report_login.php" style=" color: #00880a;">Sign in as Report Manager</a><br>
-
+        <a href="appointment_login.php" style=" color: #00880a;">Sign in as Appointment Manager</a><br>
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 

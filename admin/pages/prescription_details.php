@@ -1,11 +1,3 @@
-<?php
-if (isset($_POST['btn'])) {
-    $value = $_POST['medicine_number'];
-}
-if (isset($_POST['btn2'])) {
-    $obj_admin->add_prescription($_POST);
-}
-?>
 <section class="content-header">
     <h1>
         Make Prescription
@@ -61,11 +53,8 @@ if (isset($_POST['btn2'])) {
                             <input type="text" name="patient_weight" placeholder="Weight" />
                         </div>
                         <label>Medicine Details</label><br>
-                        <?php
-                        for ($i = 0; $i < $value; $i++) {
-                            ?>
                             <div class="form-group">
-                                <span><?php echo $i + 1; ?></span><?php echo $space_1; ?>
+                                <span>1</span><?php echo $space_1; ?>
                                 <input type="text" name="patient_drug_name[]" placeholder="Drug Name" /><?php echo $space_2; ?>
                                 <input type="text" name="patient_drug_unit[]" placeholder="Unit (tablet or syrup)" /><?php echo $space_2; ?>
                                 <input type="text" name="patient_drug_dosage[]" placeholder="1+1+1" /><?php echo $space_2; ?>
@@ -76,7 +65,6 @@ if (isset($_POST['btn2'])) {
                                 </select><?php echo $space_2; ?>
                                 <input type="text" name="patient_drug_expire_days[]" placeholder="how many days" />
                             </div>
-                        <?php } ?>
                         <div class="box-footer">
                             <button type="submit" name="btn2" class="btn btn-primary btn-lg">Save</button>
                         </div>

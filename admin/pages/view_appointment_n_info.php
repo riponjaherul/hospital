@@ -1,3 +1,8 @@
+<?php
+if(isset($_GET['did']) && isset($_SESSION['user_access_for_nurse_manager'])){
+    $d_id = $_GET['did'];
+    $_SESSION['d_id'] = $d_id;
+?>
 <section class="content-header">
     <h1>
         Appointment
@@ -18,13 +23,13 @@
                 <div class="box-header">
                     <div >
                         <div class="input-group" style="width: 150px;">
-                            <select onchange="get_department_id(this.value, 'doctor_list')">
-                                <option>Select Department...</option>
+                            <select onchange="get_doctor_id_for_shift(this.value, 'shift_id')">
+                                <option>Select Doctor...</option>
                                 <?php
-                                $all_department = $obj_admin->select_all_department();
-                                while ($row = mysql_fetch_assoc($all_department)) {
+                                $doctor_single_dept = $obj_admin->select_doctor_by_single_dept($d_id);
+                                while ($row = mysql_fetch_assoc($doctor_single_dept)) {
                                     ?>
-                                    <option value="<?php echo $row['department_id']; ?>"><?php echo $row['department_name']; ?></option>
+                                    <option value="<?php echo $row['doctor_id']; ?>"><?php echo $row['doctor_title'] . ' ' . $row['doctor_first_name'] . ' ' . $row['doctor_last_name']; ?></option>
                                     <?php
                                 }
                                 ?>
@@ -32,31 +37,16 @@
                         </div>
                     </div><br>
                     <div class="col-lg-12">
-                        <div class="col-lg-3 " id="doctor_list">
-
-                        </div>
-                        <div class="col-lg-3 col-lg-offset-6" id="date_select">
-
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-3 col-lg-offset-6" id="shift_id">
                         </div>
                     </div>
-                </div><!-- /.box-header -->
-                <div class="box-header" style="width: 400px;">
-                    <div id="doctor_list">
+                </div>
+            </div><!-- /.box-header -->
+            <div id="appointment_list">
 
-                    </div>
-                </div><!-- /.box-header -->
-                <?php
-                if (isset($_SESSION['message'])) {
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                }
-                ?>
             </div>
-        </div><!-- /.box-header -->
-        <div id="appointment_list">
-           
-        </div>
-    </div><!-- /.box -->
+        </div><!-- /.box -->
 </section><!-- /.content -->
 <?php unset($_SESSION['doctor_id']); ?>
 
@@ -88,29 +78,9 @@
         //alert ("You are not using Microsoft Internet Explorer");
     }
 
-    function get_department_id(given_text, objID)
-    {
-//                alert(given_text);
-        //var obj = document.getElementById(objID);
-        serverPage = 'pages/ajax/appointment_details2.php?department_id=' + given_text;
-        xmlhttp.open("GET", serverPage);
-        xmlhttp.onreadystatechange = function ()
-        {
-            //alert(xmlhttp.readyState);
-//                    alert(xmlhttp.status);
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-            {
-//                        alert(xmlhttp.responseText);
-                document.getElementById(objID).innerHTML = xmlhttp.responseText;
-                //document.getElementById(objcw).innerHTML = xmlhttp.responseText;
-            }
-        }
-        xmlhttp.send(null);
-    }
-
-    function get_doctor_id(given_text, ID) {
+    function get_doctor_id_for_shift(given_text, ID) {
 //       alert(given_text);
-        serverPage = 'pages/ajax/appointment_details2.php?doctor_id=' + given_text;
+        serverPage = 'pages/ajax/appointment_details_n_manager.php?doctor_id=' + given_text;
         xmlhttp.open("GET", serverPage);
         xmlhttp.onreadystatechange = function ()
         {
@@ -125,8 +95,9 @@
         }
         xmlhttp.send(null);
     }
-    function get_selected_date(given_text, ID) {
-        serverPage = 'pages/ajax/appointment_details2.php?get_date=' + given_text;
+    function get_shift_id_for_appointment_list(given_text,doc_id, ID) {
+//       alert(given_text);
+        serverPage = 'pages/ajax/appointment_details_n_manager.php?shift_id=' + given_text+'&doc_id='+doc_id;
         xmlhttp.open("GET", serverPage);
         xmlhttp.onreadystatechange = function ()
         {
@@ -142,3 +113,5 @@
         xmlhttp.send(null);
     }
 </script>
+<?php
+}

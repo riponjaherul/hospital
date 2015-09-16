@@ -1,6 +1,7 @@
 <?php
 session_start();
 ob_start();
+date_default_timezone_set("Asia/Dacca");
 //if((isset($_SESSION['sess_user_admin_login_id']) == NULL) || (isset($_SESSION['sess_user_doctor_login_id']) == NULL)){
 //    header('Location:index.php');
 //}
@@ -9,8 +10,16 @@ if ((isset($_SESSION['sess_user_admin_login_id']) == NULL)) {
 }
 require_once './classes/admin.php';
 require_once './classes/appointment.php';
+require_once './classes/nurse.php';
+require_once './classes/doctor.php';
+require_once './classes/patient.php';
+require_once './classes/report.php';
 $obj_admin = new Admin();
 $obj_appointment = new Appointment();
+$obj_nurse = new Nurse();
+$obj_doctor = new Doctor();
+$obj_patient = new Patient();
+$obj_report = new Report();
 
 $space_1 = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 $space_2 = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
@@ -40,8 +49,63 @@ if (isset($_GET['page'])) {
         case 'edit_appointment':
             $page = 'edit_single_appointment.php';
             break;
+        case 'appointment_payment':
+            $page = 'appointment_payment_info.php';
+            break;
+        case 'manage_nurse':
+            $page = 'manage_nurse_info.php';
+            break;
+        case 'view_appointment_n':
+            $page = 'view_appointment_n_info.php';
+            break;
+        case 'add_prescription_p':
+            $page = 'add_prescription_p_info.php';
+            break;
+        case 'view_appointment_d':
+            $page = 'view_appointment_d_info.php';
+            break;
+        case 'add_prescription_d':
+            $page = 'add_prescription_d_info.php';
+            break;
+        case 'view_report_request':
+            $page = 'view_report_request_info.php';
+            break;
+        case 'add_report_request':
+            $page = 'add_report_request_info.php';
+            break;
+        case 'view_prescription':
+            $page = 'view_prescription_info.php';
+            break;
+        case 'patient_details':
+            $page = 'patient_details_info.php';
+            break;
+        case 'view_prescription_date':
+            $page = 'view_prescription_date_info.php';
+            break;
+        case 'requseted_report':
+            $page = 'requseted_report_info.php';
+            break;
+        case 'add_report':
+            $page = 'add_report_info.php';
+            break;
         case 'sign_out':
             $obj_admin->sign_out();
+            break;
+
+        default:
+            break;
+    }
+}
+if (isset($_GET['option'])) {
+    switch ($_GET['option']) {
+        case 'change_appointment_status':
+            $id = $_GET['id'];
+            $rid = $_GET['rid'];
+            if ($rid == '0') {
+                $obj_appointment->change_appointment_new_status($id);
+            } else {
+                $obj_appointment->change_appointment_status($id);
+            }
             break;
 
         default:
@@ -307,19 +371,23 @@ if (isset($_GET['page'])) {
                                         echo $result['r_manager_image'];
                                     } elseif (isset($_SESSION['user_access_for_registration_manager'])) {
                                         echo $result['reg_manager_image'];
+                                    } elseif ($_SESSION['user_access_for_nurse_manager']) {
+                                        echo $result['nurse_image'];
                                     }
                                     ?>" class="user-image" alt="User Image" />
                                     <span class="hidden-xs"><?php
                                         if (isset($_SESSION['user_access_for_admin'])) {
                                             echo $result['admin_name'];
                                         } elseif (isset($_SESSION['user_access_for_doctor'])) {
-                                            echo $result['doctor_name'];
+                                            echo $result['doctor_title'].' '.$result['doctor_first_name'].' '.$result['doctor_last_name'];
                                         } elseif (isset($_SESSION['user_access_for_patient'])) {
                                             echo $result['patient_name'];
                                         } elseif (isset($_SESSION['user_access_for_report_manager'])) {
                                             echo $result['r_manager_name'];
                                         } elseif (isset($_SESSION['user_access_for_registration_manager'])) {
                                             echo $result['reg_manager_name'];
+                                        } elseif ($_SESSION['user_access_for_nurse_manager']) {
+                                            echo $result['nurse_name'];
                                         }
                                         ?></span>
                                 </a>
@@ -337,6 +405,8 @@ if (isset($_GET['page'])) {
                                             echo $result['r_manager_image'];
                                         } elseif (isset($_SESSION['user_access_for_registration_manager'])) {
                                             echo $result['reg_manager_image'];
+                                        } elseif ($_SESSION['user_access_for_nurse_manager']) {
+                                            echo $result['nurse_image'];
                                         }
                                         ?>" class="img-circle" alt="User Image" />
                                         <p>
@@ -344,13 +414,15 @@ if (isset($_GET['page'])) {
                                             if (isset($_SESSION['user_access_for_admin'])) {
                                                 echo $result['admin_name'];
                                             } elseif (isset($_SESSION['user_access_for_doctor'])) {
-                                                echo $result['doctor_name'];
+                                                echo $result['doctor_title'].' '.$result['doctor_first_name'].' '.$result['doctor_last_name'];
                                             } elseif (isset($_SESSION['user_access_for_patient'])) {
                                                 echo $result['patient_name'];
                                             } elseif (isset($_SESSION['user_access_for_report_manager'])) {
                                                 echo $result['r_manager_name'];
                                             } elseif (isset($_SESSION['user_access_for_registration_manager'])) {
                                                 echo $result['reg_manager_name'];
+                                            } elseif ($_SESSION['user_access_for_nurse_manager']) {
+                                                echo $result['nurse_name'];
                                             }
                                             ?> - Web Developer
                                             <small>Member since Nov. 2012</small>
@@ -374,137 +446,9 @@ if (isset($_GET['page'])) {
                 </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar">
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-                    <!-- Sidebar user panel -->
-                    <!-- search form -->
-                    <form action="#" method="get" class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search..." />
-                            <span class="input-group-btn">
-                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </form>
-                    <!-- /.search form -->
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
-                        <li class="header"></li>
-                        <li class="active treeview">
-                            <a href="deshbord.php">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <?php
-                        if (isset($_SESSION['user_access_for_admin'])) {
-                            ?>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Doctor Manager</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i>Add Doctor</a></li>
-                                </ul>
-                            </li>
-                           
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Report Manager</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href=""><i class="fa fa-circle-o"></i>Add Patient</a></li>
-                                </ul>
-                            </li> 
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Registration Manager</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href=""><i class="fa fa-circle-o"></i>Add Patient</a></li>
-                                </ul>
-                            </li> 
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Payment Manager</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href=""><i class="fa fa-circle-o"></i>Add Patient</a></li>
-                                </ul>
-                            </li> 
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Nurse Manager</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href=""><i class="fa fa-circle-o"></i>Add Patient</a></li>
-                                </ul>
-                            </li> 
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Appointment Manager</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="?page=view_appointment"><i class="fa fa-circle-o"></i>View Appointment</a></li>
-                                    <li><a href="?page=view_appointment_new"><i class="fa fa-circle-o"></i>View New Appointment</a></li>
-                                </ul>
-                            </li>  
-                            <?php
-                        }if (isset($_SESSION['user_access_for_doctor'])) {
-                            ?>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Prescription Manager</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="?page=make_prescriprion"><i class="fa fa-circle-o"></i>Make Prescription</a></li>
-                                    <li><a href="?page=suggest_report"><i class="fa fa-circle-o"></i>Suggest Report</a></li>
-                                    <li><a href="?page=manage_prescriprion"><i class="fa fa-circle-o"></i>Manage Prescription</a></li>
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Report Manager</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-
-                                    <li><a href="?page=manage_report"><i class="fa fa-circle-o"></i>Manage Report</a></li>
-                                </ul>
-                            </li>
-                        <?php } if (isset($_SESSION['user_access_for_registration_manager'])) { ?>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Appointment Manager</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-
-                                    <li><a href="?page=view_appointment"><i class="fa fa-circle-o"></i>View Appointment</a></li>
-                                </ul>
-                            </li>
-                             <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-folder"></i> <span>Patient Manager</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href=""><i class="fa fa-circle-o"></i>Add Patient</a></li>
-                                </ul>
-                            </li> 
-                        <?php } ?>
-                        <li><a href="?page=sign_out"><i class="fa fa-circle-o text-red"></i> <span>Sign Out</span></a></li>
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
+            <?php
+                                            include './pages/manu_page.php';
+            ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
