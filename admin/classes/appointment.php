@@ -8,7 +8,7 @@ class Appointment {
         $obj_db = new Database();
     }
 
-    public function select_all_appointment_list($get_date, $doctor_id) {
+    public function get_all_appointment_list($doctor_id,$get_date) {
         $sql = "SELECT a.`appointment_id`,a.`patient_reg_id`,p.`patient_name`,p.`patient_phone_number`,
                 a.`appointment_status`,t.`time_slot_time`,t.`time_slot_serial`,s.`shift_name` 
                 FROM `tbl_appointment` as a, `tbl_patient` as p, `tbl_time_slot` AS t,`tbl_shift` as s 

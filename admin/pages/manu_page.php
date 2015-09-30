@@ -110,14 +110,10 @@
                             </li>
                         <?php } if (isset($_SESSION['user_access_for_registration_manager'])) { ?>
                             <li class="treeview">
-                                <a href="#">
+                                <a href="?page=view_appointment&ssid=<?php echo $_SESSION['user_access_for_registration_manager']; ?>">
                                     <i class="fa fa-folder"></i> <span>Appointment Manager</span>
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </a>
-                                <ul class="treeview-menu">
-
-                                    <li><a href="?page=view_appointment"><i class="fa fa-circle-o"></i>View Appointment</a></li>
-                                </ul>
                             </li>
                             <li class="treeview">
                                 <a href="#">

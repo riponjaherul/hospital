@@ -101,6 +101,21 @@ class Admin {
                 WHERE pt.`prescription_nurse_id` = '$pres_nurse_id' AND pt.`test_id` = rr.`test_id`";
         return mysql_query($sql);
     }
+    function get_single_department_name($dp_id){
+        $sql = "SELECT `department_name` FROM `tbl_department` WHERE `department_id`='$dp_id'";
+        $query_result = mysql_query($sql);
+        return mysql_fetch_assoc($query_result);
+    }
+    function get_single_doctor_name($d_id){
+        $sql = "SELECT `doctor_title`,`doctor_first_name`,`doctor_last_name` FROM `tbl_doctor` WHERE `doctor_id`='$d_id'";
+        $query_result = mysql_query($sql);
+        return mysql_fetch_assoc($query_result);
+    }
+    function get_single_shift_name($shift_id){
+        $sql = "SELECT `shift_name` FROM `tbl_shift` WHERE `shift_id`='$shift_id'";
+        $query_result = mysql_query($sql);
+        return mysql_fetch_assoc($query_result);
+    }
 
     public function sign_out() {
         session_destroy();

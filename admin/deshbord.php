@@ -88,6 +88,9 @@ if (isset($_GET['page'])) {
         case 'add_report':
             $page = 'add_report_info.php';
             break;
+        case 'patient_profile':
+            $page = 'patient_profile_info.php';
+            break;
         case 'sign_out':
             $obj_admin->sign_out();
             break;
@@ -171,192 +174,119 @@ if (isset($_GET['option'])) {
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                             <!-- Messages: style can be found in dropdown.less-->
-                            <li class="dropdown messages-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="label label-success">4</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 4 messages</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li><!-- start message -->
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-                                                    </div>
-                                                    <h4>
-                                                        Support Team
-                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li><!-- end message -->
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="assets/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image" />
-                                                    </div>
-                                                    <h4>
-                                                        AdminLTE Design Team
-                                                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="assets/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image" />
-                                                    </div>
-                                                    <h4>
-                                                        Developers
-                                                        <small><i class="fa fa-clock-o"></i> Today</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="assets/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image" />
-                                                    </div>
-                                                    <h4>
-                                                        Sales Department
-                                                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="assets/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image" />
-                                                    </div>
-                                                    <h4>
-                                                        Reviewers
-                                                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">See All Messages</a></li>
-                                </ul>
-                            </li>
-                            <!-- Notifications: style can be found in dropdown.less -->
-                            <li class="dropdown notifications-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">10</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 10 notifications</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-users text-red"></i> 5 new members joined
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-user text-red"></i> You changed your username
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
-                                </ul>
-                            </li>
-                            <!-- Tasks: style can be found in dropdown.less -->
-                            <li class="dropdown tasks-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-flag-o"></i>
-                                    <span class="label label-danger">9</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 9 tasks</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li><!-- Task item -->
-                                                <a href="#">
-                                                    <h3>
-                                                        Design some buttons
-                                                        <small class="pull-right">20%</small>
-                                                    </h3>
-                                                    <div class="progress xs">
-                                                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">20% Complete</span>
+                            <?php
+                            if (isset($_SESSION['user_access_for_patient'])) {
+                                ?>
+                                <li class="dropdown messages-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <?php
+                                        $total_unread_prescription = $obj_patient->get_no_of_unread_prescription($result['patient_id']);
+                                        echo '<span class="label label-success">' . $total_unread_prescription['total_read_status'] . '</span>';
+                                        ?>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <?php
+                                        echo '<li class="header">You have <b>' . $total_unread_prescription['total_read_status'] . '</b> new prescriptions</li>';
+                                        ?>
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li><!-- start message -->
+                                                    <?php
+                                                    $unreaad_prescription = $obj_patient->get_unread_prescription($result['patient_id']);
+                                                    while ($row = mysql_fetch_assoc($unreaad_prescription)) {
+                                                        echo '<a href="?page=view_prescription_date&pid='.$result['patient_id'].'&date='.$row['appointment_date'].'&rstatus='.$row['read_status'].'&pnid='.$row['prescription_nurse_id'].'">
+                                                        <h4>
+                                                            '.$row['doctor_title'].' '.$row['doctor_first_name'].' '.$row['doctor_last_name'].'
+                                                            <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                                        </h4>
+                                                        <p>'.$row['appointment_date'].'</p>
+                                                    </a>';
+                                                    }
+                                                    ?>
+                                                </li><!-- end message -->
+                                            </ul>
+                                        </li>
+                                        <li><a href="?page=patient_details&id=<?php echo $result['patient_id']; ?>&ssis=<?php echo $_SESSION['user_access_for_patient']; ?>">See All Prescriptions</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown messages-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <span class="label label-success">4</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="header">You have 4 new reports</li>
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li><!-- start message -->
+                                                    <a href="#">
+                                                        <div class="pull-left">
+                                                            <img src="assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                                                         </div>
-                                                    </div>
-                                                </a>
-                                            </li><!-- end task item -->
-                                            <li><!-- Task item -->
-                                                <a href="#">
-                                                    <h3>
-                                                        Create a nice theme
-                                                        <small class="pull-right">40%</small>
-                                                    </h3>
-                                                    <div class="progress xs">
-                                                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">40% Complete</span>
+                                                        <h4>
+                                                            Support Team
+                                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                        </h4>
+                                                        <p>Why not buy a new awesome theme?</p>
+                                                    </a>
+                                                </li><!-- end message -->
+                                                <li>
+                                                    <a href="#">
+                                                        <div class="pull-left">
+                                                            <img src="assets/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image" />
                                                         </div>
-                                                    </div>
-                                                </a>
-                                            </li><!-- end task item -->
-                                            <li><!-- Task item -->
-                                                <a href="#">
-                                                    <h3>
-                                                        Some task I need to do
-                                                        <small class="pull-right">60%</small>
-                                                    </h3>
-                                                    <div class="progress xs">
-                                                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">60% Complete</span>
+                                                        <h4>
+                                                            AdminLTE Design Team
+                                                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                                                        </h4>
+                                                        <p>Why not buy a new awesome theme?</p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <div class="pull-left">
+                                                            <img src="assets/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image" />
                                                         </div>
-                                                    </div>
-                                                </a>
-                                            </li><!-- end task item -->
-                                            <li><!-- Task item -->
-                                                <a href="#">
-                                                    <h3>
-                                                        Make beautiful transitions
-                                                        <small class="pull-right">80%</small>
-                                                    </h3>
-                                                    <div class="progress xs">
-                                                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">80% Complete</span>
+                                                        <h4>
+                                                            Developers
+                                                            <small><i class="fa fa-clock-o"></i> Today</small>
+                                                        </h4>
+                                                        <p>Why not buy a new awesome theme?</p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <div class="pull-left">
+                                                            <img src="assets/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image" />
                                                         </div>
-                                                    </div>
-                                                </a>
-                                            </li><!-- end task item -->
-                                        </ul>
-                                    </li>
-                                    <li class="footer">
-                                        <a href="#">View all tasks</a>
-                                    </li>
-                                </ul>
-                            </li>
+                                                        <h4>
+                                                            Sales Department
+                                                            <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                                        </h4>
+                                                        <p>Why not buy a new awesome theme?</p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <div class="pull-left">
+                                                            <img src="assets/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image" />
+                                                        </div>
+                                                        <h4>
+                                                            Reviewers
+                                                            <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                                        </h4>
+                                                        <p>Why not buy a new awesome theme?</p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="footer"><a href="#">See All Messages</a></li>
+                                    </ul>
+                                </li>
+                            <?php } ?>
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -379,7 +309,7 @@ if (isset($_GET['option'])) {
                                         if (isset($_SESSION['user_access_for_admin'])) {
                                             echo $result['admin_name'];
                                         } elseif (isset($_SESSION['user_access_for_doctor'])) {
-                                            echo $result['doctor_title'].' '.$result['doctor_first_name'].' '.$result['doctor_last_name'];
+                                            echo $result['doctor_title'] . ' ' . $result['doctor_first_name'] . ' ' . $result['doctor_last_name'];
                                         } elseif (isset($_SESSION['user_access_for_patient'])) {
                                             echo $result['patient_name'];
                                         } elseif (isset($_SESSION['user_access_for_report_manager'])) {
@@ -414,7 +344,7 @@ if (isset($_GET['option'])) {
                                             if (isset($_SESSION['user_access_for_admin'])) {
                                                 echo $result['admin_name'];
                                             } elseif (isset($_SESSION['user_access_for_doctor'])) {
-                                                echo $result['doctor_title'].' '.$result['doctor_first_name'].' '.$result['doctor_last_name'];
+                                                echo $result['doctor_title'] . ' ' . $result['doctor_first_name'] . ' ' . $result['doctor_last_name'];
                                             } elseif (isset($_SESSION['user_access_for_patient'])) {
                                                 echo $result['patient_name'];
                                             } elseif (isset($_SESSION['user_access_for_report_manager'])) {
@@ -431,7 +361,7 @@ if (isset($_GET['option'])) {
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            <a href="?page=patient_profile&pid=<?php echo $result['patient_id']; ?>&sessid=<?php echo $_SESSION['user_access_for_patient']; ?>" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
                                             <a href="?page=sign_out" class="btn btn-default btn-flat">Sign out</a>
@@ -447,7 +377,7 @@ if (isset($_GET['option'])) {
             </header>
             <!-- Left side column. contains the logo and sidebar -->
             <?php
-                                            include './pages/manu_page.php';
+            include './pages/manu_page.php';
             ?>
 
             <!-- Content Wrapper. Contains page content -->

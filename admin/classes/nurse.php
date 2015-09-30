@@ -26,8 +26,7 @@ class Nurse extends Admin {
         return mysql_query($sql);
     }
     function make_prescription_for_nurse($data){
-        echo $vL = $_SESSION['d_id'];
-        exit();
+        $d_id = $_SESSION['d_id'];
         $sql = "INSERT INTO `tbl_prescription_nurse`(`patient_suger`,`doctor_id`,`patient_id`,`nurse_id`,`appointment_date`,`patient_blood_pressure`,`patient_tempetature`,`patient_weight`)
                                               VALUES('$data[patient_suger]','$data[doctor_id]','$data[patient_id]','$data[nurse_id]','$data[appointment_date]','$data[patient_blood_pressure]','$data[patient_tempetature]','$data[patient_weight]')";
         if(!mysql_query($sql)){

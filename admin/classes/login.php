@@ -54,7 +54,7 @@ class Login {
         $email_address = mysql_real_escape_string($data['patient_email_address']);
         $password = md5($data['patient_password']);
         
-        $sql = "SELECT patient_id,patient_name,patient_image,patient_email_address,patient_password
+        $sql = "SELECT patient_id,patient_reg_id,patient_name,patient_image,patient_email_address,patient_password,patient_phone_number,patient_dob,patient_address
                 FROM tbl_patient
                 WHERE patient_email_address = '$email_address' AND patient_password = '$password'";
         $query_result = mysql_query($sql);

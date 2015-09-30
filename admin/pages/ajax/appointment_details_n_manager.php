@@ -82,5 +82,6 @@ if (isset($_GET['shift_id'])) {
                 </tr>
             <?php } ?>
         </table>
+    </div>
         <?php
     }

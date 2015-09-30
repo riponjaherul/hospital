@@ -9,7 +9,7 @@ $obj_appointment = new Appointment();
 if (isset($_GET['department_id'])) {
     $value = intval($_GET['department_id']);
     ?>
-    <select onchange="get_doctor_id(this.value, 'date_select')">
+<select name="doctor_id" onchange="get_doctor_id(this.value, 'date_select')">
         <option>Select Doctor...</option>
         <?php
         $select_doctor_by_single_dept = $obj_admin->select_doctor_by_single_dept($value);

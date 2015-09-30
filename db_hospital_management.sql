@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2015 at 06:14 AM
+-- Generation Time: Sep 30, 2015 at 09:19 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -62,36 +62,20 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment` (
   `appointment_current_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `appointment_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Satus =2 : pending, Satus =1 : Yes,Satus =0 : No,',
   `deletion_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_appointment`
 --
 
 INSERT INTO `tbl_appointment` (`appointment_id`, `doctor_id`, `patient_reg_id`, `appointment_date`, `shift_id`, `time_slot_id`, `appointment_current_time`, `appointment_status`, `deletion_status`) VALUES
-(32, 3, 'R0179001', '2015-09-03', 2, 6, '2015-09-03 17:49:15', 0, 0),
-(33, 3, 'R0179000', '2015-09-03', 1, 13, '2015-09-03 17:49:17', 0, 0),
-(34, 3, 'R0179001', '2015-09-03', 2, 6, '2015-09-03 17:49:19', 0, 0),
-(35, 2, 'R0179000', '2015-09-04', 1, 15, '2015-09-03 18:58:26', 2, 0),
-(36, 2, 'R0179001', '2015-09-05', 1, 18, '2015-09-03 18:58:38', 2, 0),
-(37, 2, 'R0179000', '2015-09-03', 1, 13, '2015-09-03 19:28:21', 0, 0),
-(38, 2, 'R0179001', '2015-09-03', 1, 17, '2015-09-03 19:28:32', 0, 0),
-(39, 2, 'R0179002', '2015-09-03', 1, 15, '2015-09-03 21:06:35', 0, 0),
-(40, 2, 'R0179000', '2015-09-03', 1, 20, '2015-09-03 21:27:48', 0, 0),
-(41, 2, 'R0179001', '2015-09-03', 1, 14, '2015-09-03 21:28:28', 0, 0),
-(42, 2, 'R0179006', '2015-09-03', 1, 18, '2015-09-04 18:22:27', 0, 0),
-(43, 2, 'R0179000', '2015-09-07', 1, 13, '2015-09-07 11:41:50', 1, 0),
-(44, 2, 'R0179001', '2015-09-07', 1, 17, '2015-09-07 13:15:37', 1, 0),
-(46, 2, 'R0179002', '2015-09-07', 1, 16, '2015-09-07 14:33:28', 1, 0),
-(47, 2, 'R0179003', '2015-09-07', 1, 19, '2015-09-07 14:33:12', 1, 0),
-(48, 2, 'R0179004', '2015-09-07', 1, 15, '2015-09-08 08:27:16', 1, 0),
-(49, 2, 'R0179005', '2015-09-07', 1, 22, '2015-09-07 17:42:16', 1, 0),
-(50, 2, 'R0179000', '2015-09-16', 1, 15, '2015-09-15 18:00:55', 1, 0),
-(51, 2, 'R0179001', '2015-09-16', 1, 17, '2015-09-15 18:01:08', 1, 0),
-(52, 2, 'R0179002', '2015-09-16', 1, 13, '2015-09-15 18:00:30', 1, 0),
-(53, 2, 'R0179003', '2015-09-16', 1, 22, '2015-09-15 18:01:30', 1, 0),
-(54, 2, 'R0179004', '2015-09-16', 1, 14, '2015-09-15 18:00:43', 1, 0),
-(55, 2, 'R0179005', '2015-09-16', 1, 18, '2015-09-15 18:01:18', 1, 0);
+(62, 2, 'R0179005', '2015-09-29', 1, 16, '2015-09-28 18:32:37', 0, 0),
+(63, 2, 'R0179003', '2015-09-29', 1, 20, '2015-09-28 18:33:47', 0, 0),
+(64, 2, 'R0179001', '2015-09-29', 2, 11, '2015-09-28 18:34:37', 0, 0),
+(65, 2, 'R0179000', '2015-09-29', 1, 17, '2015-09-28 18:52:20', 0, 0),
+(66, 2, 'R0179001', '2015-09-30', 1, 14, '2015-09-28 18:53:53', 0, 0),
+(67, 2, 'R0179005', '2015-09-30', 1, 15, '2015-09-30 07:06:52', 0, 0),
+(68, 2, 'R0179000', '2015-09-30', 2, 9, '2015-09-30 07:07:20', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -107,23 +91,21 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment_bill` (
   `appointment_bill_amount` int(10) NOT NULL,
   `appointment_date` varchar(15) NOT NULL,
   `deletion_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_appointment_bill`
 --
 
 INSERT INTO `tbl_appointment_bill` (`appointment_bill_id`, `doctor_id`, `patient_id`, `discount_status`, `appointment_bill_amount`, `appointment_date`, `deletion_status`) VALUES
-(1, 2, 1, 1, 500, '2015-09-07', 0),
-(2, 2, 2, 1, 500, '2015-09-07', 0),
-(3, 2, 6, 0, 1000, '2015-09-07', 0),
-(4, 2, 5, 1, 500, '2015-09-09', 0),
-(5, 2, 3, 1, 500, '2015-09-16', 0),
-(6, 2, 5, 1, 500, '2015-09-16', 0),
-(7, 2, 1, 1, 500, '2015-09-16', 0),
-(8, 2, 2, 1, 500, '2015-09-16', 0),
-(9, 2, 6, 1, 500, '2015-09-16', 0),
-(10, 2, 4, 1, 500, '2015-09-16', 0);
+(12, 0, 6, 0, 1000, '2015-09-29', 0),
+(13, 2, 4, 0, 1000, '2015-09-29', 0),
+(14, 2, 2, 0, 1000, '2015-09-29', 0),
+(15, 2, 1, 0, 1000, '2015-09-29', 0),
+(17, 2, 6, 0, 1000, '2015-09-29', 0),
+(18, 2, 6, 1, 500, '2015-09-30', 0),
+(19, 2, 1, 1, 500, '2015-09-30', 0),
+(20, 2, 2, 1, 500, '2015-09-30', 0);
 
 -- --------------------------------------------------------
 
@@ -143,29 +125,19 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment_temp` (
   `appointment_current_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `appointment_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Status=2:pending,Status=1:Yes,Status=0:No',
   `deletion_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_appointment_temp`
 --
 
 INSERT INTO `tbl_appointment_temp` (`appointment_temp_id`, `doctor_id`, `time_slot_id`, `appointment_date`, `shift_id`, `patient_reg_id`, `patient_name`, `patient_phone_number`, `appointment_current_time`, `appointment_status`, `deletion_status`) VALUES
-(19, 2, 15, '2015-09-03', 1, 0, 'Ripon', '01912794195', '2015-09-07 11:20:39', 1, 1),
-(20, 2, 20, '2015-09-03', 1, 0, 'Touhid', '0191123232', '2015-09-03 21:27:43', 0, 1),
-(22, 2, 21, '2015-09-03', 1, 0, 'Rasel Khan', '019127876', '2015-09-04 18:24:10', 0, 1),
-(23, 2, 4, '2015-09-03', 2, 0, 'Touhid', '017657232366', '2015-09-03 17:48:48', 0, 0),
-(24, 2, 8, '2015-09-03', 2, 0, 'Kafi', '64564564', '2015-09-03 21:17:35', 0, 1),
-(25, 2, 18, '2015-09-03', 1, 0, 'Rasel Khan', '0197868195', '2015-09-04 18:22:16', 0, 1),
-(26, 2, 22, '2015-09-03', 1, 0, 'Ripon', '8687', '2015-09-03 18:13:55', 0, 0),
-(27, 2, 14, '2015-09-03', 1, 0, 'Kafi', '6757567', '2015-09-03 21:28:20', 0, 1),
-(28, 2, 7, '2015-09-03', 2, 0, 'Kafi', '4646656', '2015-09-03 18:14:36', 0, 0),
-(29, 2, 1, '2015-09-03', 2, 0, 'Kafi', '6576576', '2015-09-03 18:15:04', 0, 0),
-(30, 2, 12, '2015-09-03', 2, 0, 'Ripon', '4575767', '2015-09-03 18:15:18', 0, 0),
-(32, 2, 21, '2015-09-07', 1, 0, 'Ripon', '56464', '2015-09-06 18:26:41', 0, 1),
-(33, 2, 18, '2015-09-07', 1, 0, 'Kafi', '56464646', '2015-09-06 19:08:34', 0, 1),
-(34, 2, 14, '2015-09-07', 1, 0, 'Ripon', '0191279545', '2015-09-07 17:33:01', 1, 1),
-(35, 2, 15, '2015-09-07', 1, 0, 'Rasel Khan', '01912794584', '2015-09-07 17:28:41', 1, 1),
-(36, 2, 22, '2015-09-07', 1, 0, 'Touhid', '019127953', '2015-09-07 17:42:04', 1, 1);
+(39, 2, 16, '2015-09-29', 1, 0, 'Kafi', '01912794195876', '2015-09-28 18:31:58', 0, 1),
+(40, 2, 20, '2015-09-29', 1, 0, 'Touhid', '013982190376', '2015-09-28 18:33:41', 0, 1),
+(41, 2, 11, '2015-09-29', 2, 0, 'Kafi', '0139821903ttt', '2015-09-28 18:34:33', 0, 1),
+(42, 2, 17, '2015-09-29', 1, 0, 'Rasel Khan', '34242', '2015-09-28 18:52:13', 0, 1),
+(43, 2, 18, '2015-09-30', 1, 0, 'Ripon', '01912794195555', '2015-09-30 07:07:42', 0, 0),
+(44, 2, 16, '2015-09-30', 1, 0, 'Rasel Khan', '019127941953443', '2015-09-30 07:09:20', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -352,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `tbl_patient` (
 
 INSERT INTO `tbl_patient` (`patient_id`, `department_id`, `doctor_id`, `patient_reg_id`, `patient_name`, `patient_gender`, `patient_address`, `patient_phone_number`, `patient_email_address`, `patient_password`, `patient_dob`, `patient_image`, `deletion_status`) VALUES
 (1, 1, 2, 'R0179000', 'Nabid Ahamed', 'Male', '118/1, Shantinagar, Dhaka', '01912795194', 'patient1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1975-12-19', 'patient_image/patient1.jpg', 0),
-(2, 1, 2, 'R0179001', 'Dilrose Ara Islam', 'Female', '118/1, Shantinagar', '01912799799', 'patient2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1977-03-08', 'patient_image/patient2.jpg', 0),
+(2, 1, 2, 'R0179001', 'Female Patient', 'Female', '118/1, Shantinagar', '01912799799', 'patient2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1977-03-08', 'patient_image/patient2.jpg', 0),
 (3, 1, 2, 'R0179002', 'Habib Ahamed', 'Male', 'Nobinnagor', '0191221412', 'patient3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1982-11-15', 'patient_image/patient2.jpg', 0),
 (4, 1, 2, 'R0179003', 'Kayes Khan', 'Male', 'Paltan', '019182211', 'patient4@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1991-01-15', '', 0),
 (5, 1, 2, 'R0179004', 'Shila Ahamed', 'Female', 'Paltan', '01312312', 'patient5@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1984-07-07', '', 0),
@@ -378,15 +350,20 @@ CREATE TABLE IF NOT EXISTS `tbl_prescription_doctor` (
   `read_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'status 1 : read prescription , 0:unread Prescritpion',
   `test_status` tinyint(1) NOT NULL,
   `deletion_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_prescription_doctor`
 --
 
 INSERT INTO `tbl_prescription_doctor` (`prescription_doctor_id`, `prescription_nurse_id`, `patient_history`, `drug_name`, `drug_unit`, `drug_dosage`, `drug_time`, `drug_expire`, `diet_request`, `doctor_comments`, `read_status`, `test_status`, `deletion_status`) VALUES
-(18, 10, 'DM 34', 'a:2:{i:0;s:9:"Electro K";i:1;s:4:"Napa";}', 'a:2:{i:0;s:5:"syrup";i:1;s:6:"tablet";}', 'a:2:{i:0;s:5:"1+0+1";i:1;s:5:"1+0+1";}', 'a:2:{i:0;s:1:"2";i:1;s:1:"2";}', 'a:2:{i:0;s:2:"10";i:1;s:2:"10";}', '1000 ML Water', 'Follow up after 3 months', 0, 1, 0),
-(19, 1, 'D6 36', 'a:2:{i:0;s:11:"Paracitamol";i:1;s:4:"Napa";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:6:"Tablet";}', 'a:2:{i:0;s:5:"1+1+1";i:1;s:5:"1+1+1";}', 'a:2:{i:0;s:1:"1";i:1;s:1:"1";}', 'a:2:{i:0;s:2:"10";i:1;s:1:"5";}', '2 times eat rice', 'Follow Up within 3 month', 1, 1, 0);
+(18, 10, 'DM 34', 'a:2:{i:0;s:9:"Electro K";i:1;s:4:"Napa";}', 'a:2:{i:0;s:5:"syrup";i:1;s:6:"tablet";}', 'a:2:{i:0;s:5:"1+0+1";i:1;s:5:"1+0+1";}', 'a:2:{i:0;s:1:"2";i:1;s:1:"2";}', 'a:2:{i:0;s:2:"10";i:1;s:2:"10";}', '1000 ML Water', 'Follow up after 3 months', 1, 1, 0),
+(19, 1, 'D6 36', 'a:2:{i:0;s:11:"Paracitamol";i:1;s:4:"Napa";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:6:"Tablet";}', 'a:2:{i:0;s:5:"1+1+1";i:1;s:5:"1+1+1";}', 'a:2:{i:0;s:1:"1";i:1;s:1:"1";}', 'a:2:{i:0;s:2:"10";i:1;s:1:"5";}', '2 times eat rice', 'Follow Up within 3 month', 1, 1, 0),
+(20, 11, 'DD', 'a:2:{i:0;s:4:"Napa";i:1;s:11:"Paracitamol";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:6:"Tablet";}', 'a:2:{i:0;s:5:"1+1+1";i:1;s:5:"1+1+1";}', 'a:2:{i:0;s:1:"1";i:1;s:1:"2";}', 'a:2:{i:0;s:2:"10";i:1;s:2:"13";}', '2 times eat rice', 'Follow Up within 3 month', 0, 1, 0),
+(21, 13, 'DDD', 'a:2:{i:0;s:4:"Napa";i:1;s:11:"Paracitamol";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:5:"syrup";}', 'a:2:{i:0;s:5:"1+1+1";i:1;s:13:"2 spoon daily";}', 'a:2:{i:0;s:1:"2";i:1;s:1:"2";}', 'a:2:{i:0;s:2:"10";i:1;s:2:"13";}', '2 times eat rice', 'Follow Up within 3 month', 0, 1, 0),
+(22, 12, 'DD 45', 'a:4:{i:0;s:4:"Napa";i:1;s:9:"Electro K";i:2;s:11:"Paracitamol";i:3;s:9:"Neoceptin";}', 'a:4:{i:0;s:5:"Syrup";i:1;s:6:"Tablet";i:2;s:6:"Tablet";i:3;s:5:"Syrup";}', 'a:4:{i:0;s:5:"1+1+1";i:1;s:5:"1+0+1";i:2;s:5:"0+0+1";i:3;s:13:"2 Spoon Daily";}', 'a:4:{i:0;s:1:"2";i:1;s:1:"1";i:2;s:1:"1";i:3;s:1:"2";}', 'a:4:{i:0;s:2:"12";i:1;s:1:"8";i:2;s:6:"2 Week";i:3;s:7:"1 month";}', 'Don not eat Mutton', 'Follow Up afer 4 month', 1, 1, 0),
+(23, 14, 'DMP', 'a:2:{i:0;s:4:"Napa";i:1;s:11:"Paracitamol";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:6:"Tablet";}', 'a:2:{i:0;s:5:"0+0+1";i:1;s:5:"0+0+1";}', 'a:2:{i:0;s:1:"1";i:1;s:1:"2";}', 'a:2:{i:0;s:2:"10";i:1;s:2:"13";}', '2 times eat rice', 'Follow Up within 3 month', 1, 1, 0),
+(24, 15, 'DMS', 'a:2:{i:0;s:4:"Napa";i:1;s:0:"";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:0:"";}', 'a:2:{i:0;s:5:"1+0+1";i:1;s:0:"";}', 'a:2:{i:0;s:1:"1";i:1;s:1:" ";}', 'a:2:{i:0;s:2:"10";i:1;s:0:"";}', 'Eat fruits', 'Follow after 3 months', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -399,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `tbl_prescription_doctor_test` (
   `prescription_nurse_id` int(5) NOT NULL,
   `test_id` int(3) NOT NULL,
   `deletion_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_prescription_doctor_test`
@@ -415,7 +392,22 @@ INSERT INTO `tbl_prescription_doctor_test` (`prescription_doctor_test_id`, `pres
 (31, 1, 19, 0),
 (32, 1, 16, 0),
 (33, 1, 17, 0),
-(34, 1, 38, 0);
+(34, 1, 38, 0),
+(35, 11, 11, 0),
+(36, 11, 13, 0),
+(37, 11, 46, 0),
+(38, 13, 18, 0),
+(39, 13, 23, 0),
+(40, 12, 23, 0),
+(41, 12, 28, 0),
+(42, 12, 46, 0),
+(43, 14, 7, 0),
+(44, 14, 20, 0),
+(45, 14, 13, 0),
+(46, 14, 43, 0),
+(47, 15, 10, 0),
+(48, 15, 41, 0),
+(49, 15, 46, 0);
 
 -- --------------------------------------------------------
 
@@ -434,7 +426,7 @@ CREATE TABLE IF NOT EXISTS `tbl_prescription_nurse` (
   `patient_tempetature` decimal(5,2) NOT NULL,
   `patient_weight` decimal(5,2) NOT NULL,
   `deletion_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_prescription_nurse`
@@ -444,7 +436,12 @@ INSERT INTO `tbl_prescription_nurse` (`prescription_nurse_id`, `patient_suger`, 
 (1, '5.60', 2, 2, 2, '2015-09-07', '100/80', '9.99', '9.99', 0),
 (4, '9.90', 2, 4, 2, '2015-09-07', '100/70', '9.99', '9.99', 0),
 (9, '11.40', 2, 1, 2, '2015-09-07', '120/80', '100.20', '68.92', 0),
-(10, '11.40', 2, 5, 2, '2015-09-07', '120/80', '100.20', '68.92', 0);
+(10, '11.40', 2, 5, 2, '2015-09-07', '120/80', '100.20', '68.92', 0),
+(11, '5.90', 2, 3, 2, '2015-09-16', '120/90', '100.00', '54.00', 0),
+(12, '5.90', 2, 2, 2, '2015-09-16', '100/80', '100.00', '70.40', 0),
+(13, '10.40', 2, 5, 2, '2015-09-16', '100/80', '99.30', '89.30', 0),
+(14, '5.90', 2, 2, 2, '2015-09-27', '100/80', '100.00', '89.30', 0),
+(15, '5.90', 2, 1, 2, '2015-09-30', '100/80', '100.00', '89.30', 0);
 
 -- --------------------------------------------------------
 
@@ -812,17 +809,17 @@ MODIFY `admin_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `tbl_appointment`
 --
 ALTER TABLE `tbl_appointment`
-MODIFY `appointment_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
+MODIFY `appointment_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT for table `tbl_appointment_bill`
 --
 ALTER TABLE `tbl_appointment_bill`
-MODIFY `appointment_bill_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `appointment_bill_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tbl_appointment_temp`
 --
 ALTER TABLE `tbl_appointment_temp`
-MODIFY `appointment_temp_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+MODIFY `appointment_temp_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `tbl_department`
 --
@@ -862,17 +859,17 @@ MODIFY `patient_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 -- AUTO_INCREMENT for table `tbl_prescription_doctor`
 --
 ALTER TABLE `tbl_prescription_doctor`
-MODIFY `prescription_doctor_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `prescription_doctor_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `tbl_prescription_doctor_test`
 --
 ALTER TABLE `tbl_prescription_doctor_test`
-MODIFY `prescription_doctor_test_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+MODIFY `prescription_doctor_test_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `tbl_prescription_nurse`
 --
 ALTER TABLE `tbl_prescription_nurse`
-MODIFY `prescription_nurse_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `prescription_nurse_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `tbl_reg_manager`
 --

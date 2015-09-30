@@ -14,9 +14,17 @@ Pass : 123456
 Patient Login
 -------------------
 Id: patient1@gmail.com
+Id: patient2@gmail.com
+Id: patient3@gmail.com
+Id: patient4@gmail.com
 Pass : 123456
 
 Login as Registration Manager
 ----------------------------
 ID : registration@gmail.com
+Pass : 123456
+
+Login as Nurse 
+--------------------
+ID : nurse1@gmail.com
 Pass : 123456
