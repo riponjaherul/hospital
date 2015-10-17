@@ -13,10 +13,12 @@ Pass : 123456
 
 Patient Login
 -------------------
-Id: patient1@gmail.com
-Id: patient2@gmail.com
-Id: patient3@gmail.com
-Id: patient4@gmail.com
+		patient1@gmail.com	ID : R0179000
+		patient2@gmail.com	ID : R0179001
+		patient3@gmail.com	ID : R0179002
+		patient4@gmail.com	ID : R0179003
+		patient5@gmail.com	ID : R0179004
+		patient6@gmail.com	ID : R0179005
 Pass : 123456
 
 Login as Registration Manager

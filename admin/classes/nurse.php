@@ -18,11 +18,41 @@ class Nurse extends Admin {
         return mysql_query($sql);
     }
     function get_appointment_list_for_prescription($doctor_id,$shift_id,$current_date){
-        $sql  = "SELECT t.`time_slot_serial`,a.`patient_reg_id`,p.`patient_id`,p.`patient_name`,
+        
+        // Previous uses for list of 
+        // appointment with 
+        // interconnect appointmnet Manager
+         
+//        $sql  = "SELECT t.`time_slot_serial`,a.`patient_reg_id`,p.`patient_id`,p.`patient_name`,
+//                    p.`patient_phone_number`,t.`time_slot_time` 
+//                 FROM 
+//                 `tbl_appointment` AS a, 
+//                 `tbl_time_slot` AS t ,
+//                 `tbl_patient` AS p,
+//                 `tbl_appointment_bill` AS ab
+//                 WHERE 
+//                 a.`appointment_date`='$current_date' "
+//                . "AND t.`time_slot_id`=a.`time_slot_id` "
+//                . "AND a.`shift_id`='$shift_id'  "
+//                . "AND p.`patient_reg_id`=a.`patient_reg_id` "
+//                . "AND a.`doctor_id` = '$doctor_id' 
+//                    AND p.`patient_id` = ab.`patient_id`
+//                 ORDER BY `time_slot_serial` ASC";
+        
+        // Previous uses for list of appointment without appointmnet Manager
+        $sql = "SELECT t.`time_slot_serial`,a.`patient_reg_id`,p.`patient_id`,p.`patient_name`,
                     p.`patient_phone_number`,t.`time_slot_time` 
-                 FROM `tbl_appointment` AS a, `tbl_time_slot` AS t ,`tbl_patient` AS p,`tbl_appointment_bill` AS ab
-                 WHERE a.`appointment_date`='$current_date' AND t.`time_slot_id`=a.`time_slot_id` AND a.`shift_id`='$shift_id'  AND p.`patient_reg_id`=a.`patient_reg_id` AND a.`doctor_id` = '$doctor_id' AND p.`patient_id` = ab.`patient_id`
+                 FROM 
+                 `tbl_appointment` AS a, 
+                 `tbl_time_slot` AS t ,
+                 `tbl_patient` AS p
+                 WHERE 
+                 a.`appointment_date`='$current_date' AND t.`time_slot_id`=a.`time_slot_id` 
+                AND a.`shift_id`='$shift_id'  
+                AND p.`patient_reg_id`=a.`patient_reg_id` 
+                AND a.`doctor_id` = '$doctor_id'
                  ORDER BY `time_slot_serial` ASC";
+        
         return mysql_query($sql);
     }
     function make_prescription_for_nurse($data){

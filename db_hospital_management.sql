@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2015 at 09:19 AM
+-- Generation Time: Oct 17, 2015 at 09:37 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment` (
   `appointment_current_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `appointment_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Satus =2 : pending, Satus =1 : Yes,Satus =0 : No,',
   `deletion_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_appointment`
@@ -75,7 +75,13 @@ INSERT INTO `tbl_appointment` (`appointment_id`, `doctor_id`, `patient_reg_id`, 
 (65, 2, 'R0179000', '2015-09-29', 1, 17, '2015-09-28 18:52:20', 0, 0),
 (66, 2, 'R0179001', '2015-09-30', 1, 14, '2015-09-28 18:53:53', 0, 0),
 (67, 2, 'R0179005', '2015-09-30', 1, 15, '2015-09-30 07:06:52', 0, 0),
-(68, 2, 'R0179000', '2015-09-30', 2, 9, '2015-09-30 07:07:20', 0, 0);
+(68, 2, 'R0179000', '2015-09-30', 2, 9, '2015-09-30 07:07:20', 0, 0),
+(69, 2, 'R0179002', '2015-10-14', 1, 18, '2015-10-14 16:30:36', 0, 0),
+(70, 2, 'R0179001', '2015-10-14', 1, 17, '2015-10-14 16:31:19', 0, 0),
+(71, 2, 'R0179002', '2015-10-14', 1, 14, '2015-10-14 16:37:36', 0, 0),
+(72, 2, 'R0179000', '2015-10-14', 1, 13, '2015-10-14 16:38:18', 0, 0),
+(73, 2, 'R0179005', '2015-10-14', 1, 19, '2015-10-14 16:38:46', 0, 0),
+(74, 2, 'R0179004', '2015-10-14', 1, 20, '2015-10-14 16:47:31', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -350,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `tbl_prescription_doctor` (
   `read_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'status 1 : read prescription , 0:unread Prescritpion',
   `test_status` tinyint(1) NOT NULL,
   `deletion_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_prescription_doctor`
@@ -363,7 +369,8 @@ INSERT INTO `tbl_prescription_doctor` (`prescription_doctor_id`, `prescription_n
 (21, 13, 'DDD', 'a:2:{i:0;s:4:"Napa";i:1;s:11:"Paracitamol";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:5:"syrup";}', 'a:2:{i:0;s:5:"1+1+1";i:1;s:13:"2 spoon daily";}', 'a:2:{i:0;s:1:"2";i:1;s:1:"2";}', 'a:2:{i:0;s:2:"10";i:1;s:2:"13";}', '2 times eat rice', 'Follow Up within 3 month', 0, 1, 0),
 (22, 12, 'DD 45', 'a:4:{i:0;s:4:"Napa";i:1;s:9:"Electro K";i:2;s:11:"Paracitamol";i:3;s:9:"Neoceptin";}', 'a:4:{i:0;s:5:"Syrup";i:1;s:6:"Tablet";i:2;s:6:"Tablet";i:3;s:5:"Syrup";}', 'a:4:{i:0;s:5:"1+1+1";i:1;s:5:"1+0+1";i:2;s:5:"0+0+1";i:3;s:13:"2 Spoon Daily";}', 'a:4:{i:0;s:1:"2";i:1;s:1:"1";i:2;s:1:"1";i:3;s:1:"2";}', 'a:4:{i:0;s:2:"12";i:1;s:1:"8";i:2;s:6:"2 Week";i:3;s:7:"1 month";}', 'Don not eat Mutton', 'Follow Up afer 4 month', 1, 1, 0),
 (23, 14, 'DMP', 'a:2:{i:0;s:4:"Napa";i:1;s:11:"Paracitamol";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:6:"Tablet";}', 'a:2:{i:0;s:5:"0+0+1";i:1;s:5:"0+0+1";}', 'a:2:{i:0;s:1:"1";i:1;s:1:"2";}', 'a:2:{i:0;s:2:"10";i:1;s:2:"13";}', '2 times eat rice', 'Follow Up within 3 month', 1, 1, 0),
-(24, 15, 'DMS', 'a:2:{i:0;s:4:"Napa";i:1;s:0:"";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:0:"";}', 'a:2:{i:0;s:5:"1+0+1";i:1;s:0:"";}', 'a:2:{i:0;s:1:"1";i:1;s:1:" ";}', 'a:2:{i:0;s:2:"10";i:1;s:0:"";}', 'Eat fruits', 'Follow after 3 months', 1, 1, 0);
+(24, 15, 'DMS', 'a:2:{i:0;s:4:"Napa";i:1;s:0:"";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:0:"";}', 'a:2:{i:0;s:5:"1+0+1";i:1;s:0:"";}', 'a:2:{i:0;s:1:"1";i:1;s:1:" ";}', 'a:2:{i:0;s:2:"10";i:1;s:0:"";}', 'Eat fruits', 'Follow after 3 months', 1, 1, 0),
+(25, 16, 'CMD', 'a:2:{i:0;s:11:"Paracitamol";i:1;s:4:"Napa";}', 'a:2:{i:0;s:6:"Tablet";i:1;s:5:"Syrup";}', 'a:2:{i:0;s:5:"1+1+1";i:1;s:5:"1+0+0";}', 'a:2:{i:0;s:1:"1";i:1;s:1:"2";}', 'a:2:{i:0;s:1:"8";i:1;s:2:"10";}', 'DDD', 'AAAA', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -376,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `tbl_prescription_doctor_test` (
   `prescription_nurse_id` int(5) NOT NULL,
   `test_id` int(3) NOT NULL,
   `deletion_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_prescription_doctor_test`
@@ -407,7 +414,10 @@ INSERT INTO `tbl_prescription_doctor_test` (`prescription_doctor_test_id`, `pres
 (46, 14, 43, 0),
 (47, 15, 10, 0),
 (48, 15, 41, 0),
-(49, 15, 46, 0);
+(49, 15, 46, 0),
+(50, 16, 1, 0),
+(51, 16, 3, 0),
+(52, 16, 8, 0);
 
 -- --------------------------------------------------------
 
@@ -426,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `tbl_prescription_nurse` (
   `patient_tempetature` decimal(5,2) NOT NULL,
   `patient_weight` decimal(5,2) NOT NULL,
   `deletion_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_prescription_nurse`
@@ -441,7 +451,11 @@ INSERT INTO `tbl_prescription_nurse` (`prescription_nurse_id`, `patient_suger`, 
 (12, '5.90', 2, 2, 2, '2015-09-16', '100/80', '100.00', '70.40', 0),
 (13, '10.40', 2, 5, 2, '2015-09-16', '100/80', '99.30', '89.30', 0),
 (14, '5.90', 2, 2, 2, '2015-09-27', '100/80', '100.00', '89.30', 0),
-(15, '5.90', 2, 1, 2, '2015-09-30', '100/80', '100.00', '89.30', 0);
+(15, '5.90', 2, 1, 2, '2015-09-30', '100/80', '100.00', '89.30', 0),
+(16, '9.80', 2, 1, 2, '2015-10-14', '100.70', '100.20', '56.00', 0),
+(17, '5.80', 2, 3, 2, '2015-10-14', '101/70', '103.30', '100.00', 0),
+(18, '6.70', 2, 5, 2, '2015-10-14', '140/70', '100.00', '101.00', 0),
+(19, '8.80', 2, 2, 2, '2015-10-14', '120/80', '103.60', '101.00', 0);
 
 -- --------------------------------------------------------
 
@@ -809,7 +823,7 @@ MODIFY `admin_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `tbl_appointment`
 --
 ALTER TABLE `tbl_appointment`
-MODIFY `appointment_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=69;
+MODIFY `appointment_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT for table `tbl_appointment_bill`
 --
@@ -859,17 +873,17 @@ MODIFY `patient_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 -- AUTO_INCREMENT for table `tbl_prescription_doctor`
 --
 ALTER TABLE `tbl_prescription_doctor`
-MODIFY `prescription_doctor_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+MODIFY `prescription_doctor_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `tbl_prescription_doctor_test`
 --
 ALTER TABLE `tbl_prescription_doctor_test`
-MODIFY `prescription_doctor_test_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
+MODIFY `prescription_doctor_test_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `tbl_prescription_nurse`
 --
 ALTER TABLE `tbl_prescription_nurse`
-MODIFY `prescription_nurse_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+MODIFY `prescription_nurse_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `tbl_reg_manager`
 --
